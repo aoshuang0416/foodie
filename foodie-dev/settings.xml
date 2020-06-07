@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <!--本地仓库。该值表示构建系统本地仓库的路径。其默认值为${user.home}/.m2/repository。  -->
+    <localRepository>G:\foodie-dev-repository</localRepository>
+    <!--配置服务端的一些设置。如果局域网内部有nexus,需要管理项目jar包可配置 -->  
+    <servers>
+    </servers>
+    <!--为仓库列表配置的下载镜像列表-->  
+    <mirrors>
+        <!--给定仓库的下载镜像-->  
+        <mirror>
+            <id>aliyun</id>
+            <mirrorOf>central</mirrorOf>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </mirror>
+    </mirrors>
+    <!-- 仓库配置 -->
+    <profiles>
+        <!--根据环境参数来调整的构件的配置 -->  
+        <profile>
+            <!--该配置的唯一标识符 -->  
+            <id>lovecto_profile</id>
+            <!-- 远程仓库列表 -->  
+            <repositories>
+                <repository>
+                    <id>aliyun</id>
+                    <name>aliyun</name>
+                    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <!-- 配置插件下载的仓库列表-->
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>thirdparty_repository</id>
+                    <name>thirdparty_repository</name>
+                    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+    <!-- 激活所使用的配置-->
+    <activeProfiles>
+        <activeProfile>lovecto_profile</activeProfile>
+    </activeProfiles>
+</settings>
